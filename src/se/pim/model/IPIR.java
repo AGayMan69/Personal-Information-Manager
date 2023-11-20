@@ -1,8 +1,8 @@
-package model;
+package se.pim.model;
 
 public interface IPIR {
-    public IPIR read();
+    public int getId();
     public void edit();
-    public void delete();
-    public void print();
+    public String stringOneLine();
+    public String stringDetail();
 }

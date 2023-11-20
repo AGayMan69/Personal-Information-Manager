@@ -1,4 +1,10 @@
 package se.pim.command.impl;
 
-public class ViewExitCommand {
+import se.pim.command.ICommand;
+
+public class ViewExitCommand implements ICommand {
+    @Override
+    public void run() {
+
+    }
 }

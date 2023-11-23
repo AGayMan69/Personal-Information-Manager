@@ -67,7 +67,7 @@ public class ListPIRCommand implements ICommand {
         new ViewPIRsScreenView(search.equals("") ? "___________" : search, pirListStr, paginationList).show();
     }
 
-    private Map<Integer, IPIR> searchPirList(String searchString) {
+    public Map<Integer, IPIR> searchPirList(String searchString) {
         QueryParser queryParser = new QueryParser(searchString);
         Predicate<IPIR> predicate = queryParser.getPredicate();
 

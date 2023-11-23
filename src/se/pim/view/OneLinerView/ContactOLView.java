@@ -22,6 +22,6 @@ public class ContactOLView implements IView {
         return String.format(PIR_ONELINER,
                 contact.getId(),
                 Contact.TYPE,
-                String.format("%s, %s", contact.getName(), contact.getAddress()));
+                String.format("%s, %s", contact.getName(), contact.getPhone()));
     }
 }

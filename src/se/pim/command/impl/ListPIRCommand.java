@@ -1,20 +1,25 @@
 package se.pim.command.impl;
 
-import org.mvel2.MVEL;
-import org.mvel2.PropertyAccessException;
-import se.pim.Const;
 import se.pim.command.ICommand;
 import se.pim.model.IPIR;
 import se.pim.model.impl.Contact;
 import se.pim.model.impl.Event;
 import se.pim.model.impl.Note;
 import se.pim.model.impl.Task;
+import se.pim.view.IView;
+import se.pim.view.OneLinerView.ContactOLView;
+import se.pim.view.OneLinerView.EventOLView;
+import se.pim.view.OneLinerView.NoteOLView;
+import se.pim.view.OneLinerView.TaskOLView;
+import se.pim.view.SystemView.ViewPIRsScreenView;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
-import java.util.*;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
@@ -22,6 +27,17 @@ import java.util.stream.Collectors;
 import static se.pim.Const.*;
 
 public class ListPIRCommand implements ICommand {
+
+    private static final Map<Class<? extends IPIR>, Function<IPIR, ? extends IView>> oLViewMap;
+
+    static {
+        oLViewMap = new HashMap<>();
+        oLViewMap.put(Contact.class, pir -> new ContactOLView((Contact) pir));
+        oLViewMap.put(Event.class, pir -> new EventOLView((Event) pir));
+        oLViewMap.put(Note.class, pir -> new NoteOLView((Note) pir));
+        oLViewMap.put(Task.class, pir -> new TaskOLView((Task) pir));
+    }
+
     private final Map<Integer, IPIR> pirs;
     private final String search;
     private final int page;
@@ -45,7 +61,7 @@ public class ListPIRCommand implements ICommand {
             viewPIRCommand.setPage(totalPages);
         }
         String paginationList = generatePaginationList();
-        System.out.printf(PIM_VIEW_SCREEN, search.equals("") ? "___________" : search, pirListStr, paginationList);
+        new ViewPIRsScreenView(search.equals("") ? "___________" : search, pirListStr, paginationList).show();
     }
 
     private Map<Integer, IPIR> searchPirList(String searchString) {
@@ -85,7 +101,9 @@ public class ListPIRCommand implements ICommand {
         StringBuilder pirListStr = new StringBuilder();
         for (Map.Entry<Integer, IPIR> entry : paginatedMap.entrySet()) {
             IPIR ipir = entry.getValue();
-            pirListStr.append(ipir.stringOneLine());
+            pirListStr.append(
+                    oLViewMap.get(ipir.getClass()).apply(ipir).viewToString()
+            );
         }
 
         return pirListStr.toString();
@@ -108,6 +126,7 @@ public class ListPIRCommand implements ICommand {
     }
 
 }
+
 class QueryParser {
     private final String queryString;
 
@@ -197,6 +216,7 @@ class QueryParser {
                 return false;
         }
     }
+
     private boolean evaluateDateCondition(Date actualValue, String operator, String expectedValue) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
         LocalDate expectedDate = LocalDate.parse(expectedValue, formatter);

@@ -1,16 +1,36 @@
 package se.pim.command.impl;
 
 import se.pim.command.ICommand;
+import se.pim.factory.IPIRViewFactory;
+import se.pim.factory.impl.ContactDetailViewFactory;
+import se.pim.factory.impl.EventDetailViewFactory;
+import se.pim.factory.impl.NoteDetailViewFactory;
+import se.pim.factory.impl.TaskDetailViewFactory;
 import se.pim.model.IPIR;
+import se.pim.model.impl.Contact;
+import se.pim.model.impl.Event;
+import se.pim.model.impl.Note;
+import se.pim.model.impl.Task;
 
+import java.util.HashMap;
 import java.util.Map;
+import java.util.function.Function;
 
 import static se.pim.Const.ClearConsole;
 import static se.pim.Const.scanner;
 
 public class PIRDetailCommand implements ICommand{
     private final Map<Integer, IPIR> pirs;
+    private static final Map<Class<? extends IPIR>, Function<IPIR, ? extends IPIRViewFactory>> detailViewFactoryMap;
 
+    static {
+        detailViewFactoryMap = new HashMap<>();
+        detailViewFactoryMap.put(Contact.class, pir -> new ContactDetailViewFactory((Contact) pir));
+        detailViewFactoryMap.put(Event.class, pir -> new EventDetailViewFactory((Event) pir));
+        detailViewFactoryMap.put(Note.class, pir -> new NoteDetailViewFactory((Note) pir));
+        detailViewFactoryMap.put(Task.class, pir -> new TaskDetailViewFactory((Task) pir));
+
+    }
     public PIRDetailCommand(Map<Integer, IPIR> pirs) {
         this.pirs = pirs;
     }
@@ -29,12 +49,12 @@ public class PIRDetailCommand implements ICommand{
         } while (pir == null);
         while (true) {
             ClearConsole();
-            System.out.print(pir.stringDetail());
+            detailViewFactoryMap.get(pir.getClass()).apply(pir).createView().show();
             char c = scanner.next().trim().charAt(0);
             scanner.nextLine();
             switch (Character.toLowerCase(c)) {
                 case 'e':
-                    pir.edit();
+                    new editPIRCommand(pir).run();
                     return;
                 case 'd':
                     pirs.remove(pir.getId());

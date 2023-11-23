@@ -2,14 +2,8 @@ package se.pim.command.impl;
 
 import se.pim.command.ICommand;
 import se.pim.model.IPIR;
-import se.pim.model.impl.Contact;
-import se.pim.model.impl.Event;
-import se.pim.model.impl.Note;
-import se.pim.model.impl.Task;
+import se.pim.view.SystemView.ImportPIRScreenView;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
 import java.util.Map;
 
 import static se.pim.Const.*;
@@ -23,7 +17,7 @@ public class ImportPIRCommand implements ICommand {
 
     @Override
     public void run() {
-        System.out.print(PIM_IMPORT_SCREEN);
+        new ImportPIRScreenView().show();
         String fileName = scanner.nextLine();
         int result = importPIR(fileName, pirs);
         if (result == -1) System.out.println("Import failed");

@@ -1,12 +1,12 @@
 package se.pim.command.impl;
 
-import se.pim.Const;
 import se.pim.command.ICommand;
 import se.pim.model.IPIR;
 import se.pim.model.impl.Contact;
 import se.pim.model.impl.Event;
 import se.pim.model.impl.Note;
 import se.pim.model.impl.Task;
+import se.pim.view.SystemView.ExportPIRScreenView;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -24,7 +24,7 @@ public class ExportPIRCommand implements ICommand {
 
     @Override
     public void run() {
-        System.out.print(PIM_EXPORT_SCREEN);
+        new ExportPIRScreenView().show();
         String fileName = scanner.nextLine();
         int result = exportPIR(fileName);
         if (result == -1) System.out.println("Export failed");

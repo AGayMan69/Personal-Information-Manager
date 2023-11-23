@@ -7,7 +7,6 @@ import se.pim.factory.impl.PIRFactory;
 import se.pim.model.IPIR;
 
 import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.Map;
 
 import static se.pim.Const.importPIR;

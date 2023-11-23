@@ -6,8 +6,12 @@ import se.pim.model.impl.Contact;
 import se.pim.model.impl.Event;
 import se.pim.model.impl.Note;
 import se.pim.model.impl.Task;
+import se.pim.view.CreatePIRView.CreateContactView;
+import se.pim.view.CreatePIRView.CreateEventView;
+import se.pim.view.CreatePIRView.CreateNoteView;
+import se.pim.view.CreatePIRView.CreateTaskView;
+import se.pim.view.SystemView.CreatePIRScreenView;
 
-import java.time.Instant;
 import java.time.LocalDateTime;
 import java.util.Date;
 
@@ -17,7 +21,7 @@ public class PIRFactory implements IPIRFactory {
     @Override
     public IPIR createPIR(int id) {
         ClearConsole();
-        System.out.print(PIM_CREATE_SCREEN);
+        new CreatePIRScreenView().show();
         int option = scanner.nextInt();
         scanner.nextLine();
         ClearConsole();
@@ -57,12 +61,7 @@ public class PIRFactory implements IPIRFactory {
 
     private static void displayCreateContact(String name, String address, String phone) {
         ClearConsole();
-        System.out.printf(
-                CONTACT_CREATE_SCREEN,
-                name == null ? "________" : name,
-                address == null ? "________" : address,
-                phone == null ? "________" : phone
-        );
+        new CreateContactView(name, address, phone).show();
     }
 
     @Override
@@ -87,12 +86,7 @@ public class PIRFactory implements IPIRFactory {
 
     private void displayCreateEvent(String description, LocalDateTime startTime, LocalDateTime alarm) {
         ClearConsole();
-        System.out.printf(
-                EVENT_CREATE_SCREEN,
-                description == null ? "________" : description,
-                startTime == null ? "________" : localDateTimeToString(startTime),
-                alarm == null ? "________" : localDateTimeToString(alarm)
-        );
+        new CreateEventView(description, startTime, alarm).show();
     }
 
     @Override
@@ -109,10 +103,7 @@ public class PIRFactory implements IPIRFactory {
 
     private void displayCreateNoteContent(String content) {
         ClearConsole();
-        System.out.printf(
-                NOTE_CREATE_SCREEN,
-                content == null ? "________" : content
-        );
+        new CreateNoteView(content).show();
     }
 
     @Override
@@ -133,10 +124,6 @@ public class PIRFactory implements IPIRFactory {
 
     private static void displayCreateTask(String description, Date deadline) {
         ClearConsole();
-        System.out.printf(
-                TASK_CREATE_SCREEN,
-                description == null ? "________" : description,
-                deadline == null ? "________" : dateToString(deadline)
-        );
+        new CreateTaskView(description, deadline).show();
     }
 }

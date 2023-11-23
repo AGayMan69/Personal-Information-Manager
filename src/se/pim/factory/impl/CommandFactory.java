@@ -5,9 +5,9 @@ import se.pim.command.ICommand;
 import se.pim.command.impl.*;
 import se.pim.factory.ICommandFactory;
 import se.pim.model.IPIR;
+import se.pim.view.SystemView.MainScreenView;
 
 import java.util.Map;
-import java.util.Random;
 
 import static se.pim.Const.*;
 
@@ -23,7 +23,7 @@ public class CommandFactory implements ICommandFactory {
     @Override
     public ICommand createCommand() {
         Const.ClearConsole();
-        System.out.print(PIM_MAIN_SCREEN);
+        new MainScreenView().show();
         if (scanner.hasNextInt()) {
             int opt = scanner.nextInt();
             scanner.nextLine();

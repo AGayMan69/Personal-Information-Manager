@@ -1,6 +1,5 @@
 package se.pim.factory;
 
-import se.pim.factory.impl.PIRFactory;
 import se.pim.model.IPIR;
 import se.pim.model.impl.Contact;
 import se.pim.model.impl.Event;

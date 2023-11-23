@@ -155,7 +155,7 @@ class QueryParser {
                 String operator = parts[0];
                 String value = parts[1];
 
-                switch (attribute) {
+                switch (attribute.toLowerCase()) {
                     case "name":
                         orPredicate = orPredicate.or(ipir -> ipir instanceof Contact && evaluateStringCondition(((Contact) ipir).getName(), operator, value));
                         break;

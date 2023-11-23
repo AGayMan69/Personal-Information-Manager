@@ -57,7 +57,10 @@ public class ListPIRCommand implements ICommand {
     @Override
     public void run() {
         String pirListStr = generatePirListStr();
-        if (totalPages < viewPIRCommand.getPage()) {
+        if (totalPages == 0) {
+            viewPIRCommand.setPage(1);
+        }
+        else if (totalPages < viewPIRCommand.getPage()) {
             viewPIRCommand.setPage(totalPages);
         }
         String paginationList = generatePaginationList();
@@ -144,6 +147,9 @@ class QueryParser {
 
             for (String orCondition : orConditions) {
                 String[] parts = orCondition.split("\\s+", 2);
+                if (parts.length < 2) {
+                    return predicate;
+                }
                 String attribute = parts[0];
                 parts = parts[1].split("\\s+", 2);
                 String operator = parts[0];

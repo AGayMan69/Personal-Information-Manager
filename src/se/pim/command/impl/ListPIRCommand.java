@@ -200,9 +200,9 @@ class QueryParser {
     private boolean evaluateStringCondition(String actualValue, String operator, String expectedValue) {
         switch (operator) {
             case "==":
-                return actualValue.equals(expectedValue);
+                return actualValue.equals(expectedValue.toLowerCase());
             case "contains":
-                return actualValue.contains(expectedValue);
+                return actualValue.contains(expectedValue.toLowerCase());
             default:
                 return false;
         }

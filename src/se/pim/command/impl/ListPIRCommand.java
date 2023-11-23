@@ -176,7 +176,7 @@ class QueryParser {
                             }
                         });
                         break;
-                    case "startTime":
+                    case "starttime":
                         orPredicate = orPredicate.or(ipir -> ipir instanceof Event && evaluateDateCondition(((Event) ipir).getStartTime(), operator, value));
                         break;
                     case "alarm":
@@ -200,9 +200,9 @@ class QueryParser {
     private boolean evaluateStringCondition(String actualValue, String operator, String expectedValue) {
         switch (operator) {
             case "==":
-                return actualValue.equals(expectedValue.toLowerCase());
+                return (actualValue).equalsIgnoreCase(expectedValue);
             case "contains":
-                return actualValue.contains(expectedValue.toLowerCase());
+                return actualValue.toLowerCase().contains(expectedValue.toLowerCase());
             default:
                 return false;
         }

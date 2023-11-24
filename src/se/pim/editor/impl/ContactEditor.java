@@ -2,7 +2,7 @@ package se.pim.editor.impl;
 
 import se.pim.editor.IPIREditor;
 import se.pim.model.impl.Contact;
-import se.pim.view.OneLinerView.ContactOLView;
+import se.pim.view.oneLinerView.ContactOLView;
 
 import static se.pim.Const.*;
 
@@ -12,11 +12,11 @@ public class ContactEditor implements IPIREditor {
     public ContactEditor(Contact contact) {
         this.contact = contact;
     }
+
     @Override
     public void edit() {
         System.out.printf("\n** Edit Contact %03d **\n", contact.getId());
         new ContactOLView(contact).show();
-        System.out.println();
         System.out.print(CONTENT_MODIFY_NAME);
         String newName = scanner.nextLine();
         System.out.print(CONTENT_MODIFY_ADDRESS);

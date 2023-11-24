@@ -2,7 +2,7 @@ package se.pim.editor.impl;
 
 import se.pim.editor.IPIREditor;
 import se.pim.model.impl.Note;
-import se.pim.view.OneLinerView.NoteOLView;
+import se.pim.view.oneLinerView.NoteOLView;
 
 import static se.pim.Const.NOTE_MODIFY_CONTENT;
 import static se.pim.Const.scanner;

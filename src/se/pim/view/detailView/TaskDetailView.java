@@ -1,4 +1,4 @@
-package se.pim.view.DetailView;
+package se.pim.view.detailView;
 
 import se.pim.model.impl.Task;
 import se.pim.view.IView;
@@ -22,5 +22,9 @@ public class TaskDetailView implements IView {
                 String.format(TASK_DETAIL_DESCRIPTION, task.getDescription()) +
                 String.format(TASK_DETAIL_DEADLINE, dateToString(task.getDeadline())) +
                 String.format(PIR_DETAIL_FOOTER);
+    }
+
+    public Task getTask() {
+        return task;
     }
 }

@@ -2,7 +2,7 @@ package se.pim.editor.impl;
 
 import se.pim.editor.IPIREditor;
 import se.pim.model.impl.Event;
-import se.pim.view.OneLinerView.EventOLView;
+import se.pim.view.oneLinerView.EventOLView;
 
 import static se.pim.Const.*;
 
@@ -17,7 +17,6 @@ public class EventEditor implements IPIREditor {
     public void edit() {
         System.out.printf("\n** Edit Event %03d **\n", event.getId());
         new EventOLView(event).show();
-        System.out.println();
         System.out.print(EVENT_MODIFY_DESCRIPTION);
         String newDescription = scanner.nextLine();
         System.out.print(EVENT_MODIFY_START_TIME);

@@ -3,9 +3,9 @@ package se.pim.model.impl;
 import se.pim.model.IPIR;
 
 public class Note implements IPIR {
-    private String content;
-    private final int id;
     public static final String TYPE = "Note";
+    private final int id;
+    private String content;
 
     public Note(String content, int id) {
         this.content = content;

@@ -2,11 +2,12 @@ package se.pim.command.impl;
 
 import se.pim.command.ICommand;
 import se.pim.model.IPIR;
-import se.pim.view.SystemView.ImportPIRScreenView;
+import se.pim.view.systemView.ImportPIRScreenView;
 
 import java.util.Map;
 
-import static se.pim.Const.*;
+import static se.pim.Const.importPIR;
+import static se.pim.Const.scanner;
 
 public class ImportPIRCommand implements ICommand {
     private final Map<Integer, IPIR> pirs;

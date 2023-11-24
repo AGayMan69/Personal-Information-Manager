@@ -1,8 +1,8 @@
-package se.pim.view.SystemView;
+package se.pim.view.systemView;
 
 import se.pim.view.IView;
 
-public class ExportPIRScreenView implements IView {
+public class ImportPIRScreenView implements IView {
     @Override
     public void show() {
         System.out.print(viewToString());
@@ -12,11 +12,11 @@ public class ExportPIRScreenView implements IView {
     public String viewToString() {
         return "╔════════════════════════════════════════════════════════════════════════════════════════════╗\n" +
                 "║                                                                                            ║\n" +
-                "║                                   Export PIRs                                              ║\n" +
+                "║                                      Import PIRs                                           ║\n" +
                 "║                                                                                            ║\n" +
-                "║                   Please enter the filename with .pim extension                            ║\n" +
+                "║                     Please enter the filename with .pim extension                          ║\n" +
                 "║                                                                                            ║\n" +
-                "║                   Filename: _______.pim                                                    ║\n" +
+                "║                     Filename: _______.pim                                                  ║\n" +
                 "║                                                                                            ║\n" +
                 "║                                                                                            ║\n" +
                 "╚════════════════════════════════════════════════════════════════════════════════════════════╝\n" +

@@ -19,7 +19,63 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class Const {
-    public static final Scanner scanner = new Scanner(System.in);
+    public static final String PIR_DETAIL_HEADER =
+            "╔═════════════════════════════════════════════════════════════════════╗\n" +
+                    "║                                                                     ║\n" +
+                    "║                         View %-7s Record                         ║\n" +
+                    "║                                                                     ║\n" +
+                    "║    ----------------------------------------------------------       ║\n" +
+                    "║    | ID: %03d                                                |       ║\n" +
+                    "║    ----------------------------------------------------------       ║\n";
+    public static final String PIR_DETAIL_FOOTER =
+            "║                                                                     ║\n" +
+                    "║                     [E]dit   [D]elete   [C]lose                     ║\n" +
+                    "║                                                                     ║\n" +
+                    "╚═════════════════════════════════════════════════════════════════════╝\n" +
+                    "**Enter your choice: ";
+    public static final String PIR_ONELINER =
+            "║                     %03d  |  %-8s| %-47s      ║\n" +
+                    "║                     -----|----------|------------------------------------                  ║\n";
+    public static final String TASK_DETAIL_DESCRIPTION =
+            "║    | Description: %-30s            |       ║\n" +
+                    "║    ----------------------------------------------------------       ║\n";
+    public static final String TASK_DETAIL_DEADLINE =
+            "║    | Deadline: %-10s                                   |       ║\n" +
+                    "║    ----------------------------------------------------------       ║\n";
+    public static final String CONTACT_DETAIL_NAME =
+            "║    | Name: %-10s                                       |       ║\n" +
+                    "║    ----------------------------------------------------------       ║\n";
+    public static final String CONTACT_DETAIL_ADDRESS =
+            "║    | Address: %-20s                          |       ║\n" +
+                    "║    ----------------------------------------------------------       ║\n";
+    public static final String CONTACT_DETAIL_PHONE =
+            "║    | Phone: %-10s                                 |       ║\n" +
+                    "║    ----------------------------------------------------------       ║\n";
+    public static final String NOTE_DETAIL_CONTENT =
+            "║    | Content: %-30s                |       ║\n" +
+                    "║    ----------------------------------------------------------       ║\n";
+    public static final String EVENT_DETAIL_DESCRIPTION =
+            "║    | Description: %-20s                      |       ║\n" +
+                    "║    ----------------------------------------------------------       ║\n";
+    public static final String EVENT_DETAIL_START_TIME =
+            "║    | Start Time: %-20s                       |       ║\n" +
+                    "║    ----------------------------------------------------------       ║\n";
+    public static final String EVENT_DETAIL_ALARM =
+            "║    | Alarm: %-20s                            |       ║\n" +
+                    "║    ----------------------------------------------------------       ║\n";
+    public static final String TASK_MODIFY_DESCRIPTION = "Enter Description (empty = no change): ";
+    public static final String TASK_MODIFY_DEADLINE = "Enter Deadline (e.g. 2023/01/01, empty = no change): ";
+    public static final String CONTENT_MODIFY_NAME = "Enter name (empty = no change): ";
+    public static final String CONTENT_MODIFY_ADDRESS = "Enter address (empty = no change): ";
+    public static final String CONTENT_MODIFY_PHONE = "Enter phone (e.g. (+1) 12345678, empty = no change): ";
+    public static final String NOTE_MODIFY_CONTENT = "Enter content (empty = no change): ";
+    public static final String EVENT_MODIFY_DESCRIPTION = "Enter description (empty = no change): ";
+    public static final String EVENT_MODIFY_START_TIME = "Enter start time (e.g. 2023/01/01 11:59, empty = no change): ";
+    public static final String EVENT_MODIFY_ALARM = "Enter alarm (e.g. 2023/01/01 11:59, empty = no change): ";
+    public static final String VIEW_RESULT_EMPTY = "║                                                                                            ║\n" +
+            "║                                  No result found.                                          ║\n" +
+            "║                                                                                            ║\n";
+    public static Scanner scanner = new Scanner(System.in);
 
     public static int importPIR(String fileName, Map<Integer, IPIR> pirs) {
         pirs.clear();
@@ -112,61 +168,4 @@ public class Const {
         } while (map.containsKey(randomInt));
         return randomInt;
     }
-    public static final String PIR_DETAIL_HEADER =
-            "╔═════════════════════════════════════════════════════════════════════╗\n" +
-                    "║                                                                     ║\n" +
-                    "║                         View %-7s Record                         ║\n" +
-                    "║                                                                     ║\n" +
-                    "║    ----------------------------------------------------------       ║\n" +
-                    "║    | ID: %03d                                                |       ║\n" +
-                    "║    ----------------------------------------------------------       ║\n";
-    public static final String PIR_DETAIL_FOOTER =
-            "║                                                                     ║\n" +
-                    "║                     [E]dit   [D]elete   [C]lose                     ║\n" +
-                    "║                                                                     ║\n" +
-                    "╚═════════════════════════════════════════════════════════════════════╝\n" +
-                    "**Enter your choice: ";
-    public static final String PIR_ONELINER =
-            "║                     %03d  |  %-8s| %-47s      ║\n" +
-                    "║                     -----|----------|------------------------------------                  ║\n";
-    public static final String TASK_DETAIL_DESCRIPTION =
-            "║    | Description: %-30s            |       ║\n" +
-                    "║    ----------------------------------------------------------       ║\n";
-
-    public static final String TASK_DETAIL_DEADLINE =
-            "║    | Deadline: %-10s                                   |       ║\n" +
-                    "║    ----------------------------------------------------------       ║\n";
-    public static final String CONTACT_DETAIL_NAME =
-            "║    | Name: %-10s                                       |       ║\n" +
-                    "║    ----------------------------------------------------------       ║\n";
-    public static final String CONTACT_DETAIL_ADDRESS =
-            "║    | Address: %-20s                          |       ║\n" +
-                    "║    ----------------------------------------------------------       ║\n";
-    public static final String CONTACT_DETAIL_PHONE =
-            "║    | Phone: %-10s                                 |       ║\n" +
-                    "║    ----------------------------------------------------------       ║\n";
-    public static final String NOTE_DETAIL_CONTENT =
-            "║    | Content: %-30s                |       ║\n" +
-                    "║    ----------------------------------------------------------       ║\n";
-    public static final String EVENT_DETAIL_DESCRIPTION =
-            "║    | Description: %-20s                      |       ║\n" +
-                    "║    ----------------------------------------------------------       ║\n";
-    public static final String EVENT_DETAIL_START_TIME =
-            "║    | Start Time: %-20s                       |       ║\n" +
-                    "║    ----------------------------------------------------------       ║\n";
-    public static final String EVENT_DETAIL_ALARM =
-            "║    | Alarm: %-20s                            |       ║\n" +
-                    "║    ----------------------------------------------------------       ║\n";
-    public static final String TASK_MODIFY_DESCRIPTION = "Enter Description (empty = no change): ";
-    public static final String TASK_MODIFY_DEADLINE = "Enter Deadline (e.g. 2023/01/01, empty = no change): ";
-    public static final String CONTENT_MODIFY_NAME = "Enter name (empty = no change): ";
-    public static final String CONTENT_MODIFY_ADDRESS = "Enter address (empty = no change): ";
-    public static final String CONTENT_MODIFY_PHONE = "Enter phone (e.g. (+1) 12345678, empty = no change): ";
-    public static final String NOTE_MODIFY_CONTENT = "Enter content (empty = no change): ";
-    public static final String EVENT_MODIFY_DESCRIPTION = "Enter description (empty = no change): ";
-    public static final String EVENT_MODIFY_START_TIME = "Enter start time (e.g. 2023/01/01 11:59, empty = no change): ";
-    public static final String EVENT_MODIFY_ALARM = "Enter alarm (e.g. 2023/01/01 11:59, empty = no change): ";
-    public static final String VIEW_RESULT_EMPTY = "║                                                                                            ║\n" +
-            "║                                  No result found.                                          ║\n" +
-            "║                                                                                            ║\n";
 }

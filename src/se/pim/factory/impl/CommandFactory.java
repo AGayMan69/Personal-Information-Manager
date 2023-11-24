@@ -5,11 +5,12 @@ import se.pim.command.ICommand;
 import se.pim.command.impl.*;
 import se.pim.factory.ICommandFactory;
 import se.pim.model.IPIR;
-import se.pim.view.SystemView.MainScreenView;
+import se.pim.view.systemView.MainScreenView;
 
 import java.util.Map;
 
-import static se.pim.Const.*;
+import static se.pim.Const.generateUniqueRandomId;
+import static se.pim.Const.scanner;
 
 public class CommandFactory implements ICommandFactory {
     private final Map<Integer, IPIR> pirs;

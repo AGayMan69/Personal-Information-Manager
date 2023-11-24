@@ -5,10 +5,10 @@ import se.pim.model.IPIR;
 import java.util.Date;
 
 public class Task implements IPIR {
-    private String description;
-    private Date deadline;
     public static final String TYPE = "Task";
     private final int id;
+    private String description;
+    private Date deadline;
 
     public Task(String description, Date deadline, int id) {
         this.description = description;
@@ -59,15 +59,15 @@ public class Task implements IPIR {
         return deadline;
     }
 
+    public void setDeadline(Date deadline) {
+        this.deadline = deadline;
+    }
+
     public String getDescription() {
         return description;
     }
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public void setDeadline(Date deadline) {
-        this.deadline = deadline;
     }
 }

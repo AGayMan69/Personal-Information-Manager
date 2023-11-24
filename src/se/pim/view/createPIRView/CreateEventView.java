@@ -1,4 +1,4 @@
-package se.pim.view.CreatePIRView;
+package se.pim.view.createPIRView;
 
 import se.pim.view.IView;
 

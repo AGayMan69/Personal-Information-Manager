@@ -6,7 +6,7 @@ import se.pim.model.impl.Contact;
 import se.pim.model.impl.Event;
 import se.pim.model.impl.Note;
 import se.pim.model.impl.Task;
-import se.pim.view.SystemView.ExportPIRScreenView;
+import se.pim.view.systemView.ExportPIRScreenView;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -31,7 +31,7 @@ public class ExportPIRCommand implements ICommand {
         else System.out.println("Exported " + result + " PIRs");
     }
 
-    private int exportPIR(String fileName) {
+    public int exportPIR(String fileName) {
         try {
             FileWriter fileWriter = new FileWriter(fileName + ".pim");
             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);

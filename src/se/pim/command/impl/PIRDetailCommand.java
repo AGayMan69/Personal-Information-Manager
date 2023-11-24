@@ -19,8 +19,7 @@ import java.util.function.Function;
 import static se.pim.Const.ClearConsole;
 import static se.pim.Const.scanner;
 
-public class PIRDetailCommand implements ICommand{
-    private final Map<Integer, IPIR> pirs;
+public class PIRDetailCommand implements ICommand {
     private static final Map<Class<? extends IPIR>, Function<IPIR, ? extends IPIRViewFactory>> detailViewFactoryMap;
 
     static {
@@ -31,6 +30,9 @@ public class PIRDetailCommand implements ICommand{
         detailViewFactoryMap.put(Task.class, pir -> new TaskDetailViewFactory((Task) pir));
 
     }
+
+    private final Map<Integer, IPIR> pirs;
+
     public PIRDetailCommand(Map<Integer, IPIR> pirs) {
         this.pirs = pirs;
     }
@@ -54,7 +56,7 @@ public class PIRDetailCommand implements ICommand{
             scanner.nextLine();
             switch (Character.toLowerCase(c)) {
                 case 'e':
-                    new editPIRCommand(pir).run();
+                    new EditPIRCommand(pir).run();
                     return;
                 case 'd':
                     pirs.remove(pir.getId());

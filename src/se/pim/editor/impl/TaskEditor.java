@@ -2,7 +2,7 @@ package se.pim.editor.impl;
 
 import se.pim.editor.IPIREditor;
 import se.pim.model.impl.Task;
-import se.pim.view.OneLinerView.TaskOLView;
+import se.pim.view.oneLinerView.TaskOLView;
 
 import static se.pim.Const.*;
 

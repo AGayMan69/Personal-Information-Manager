@@ -1,4 +1,4 @@
-package se.pim.view.DetailView;
+package se.pim.view.detailView;
 
 import se.pim.model.impl.Contact;
 import se.pim.view.IView;
@@ -25,5 +25,9 @@ public class ContactDetailView implements IView {
                 String.format(CONTACT_DETAIL_ADDRESS, contact.getAddress()) +
                 String.format(CONTACT_DETAIL_PHONE, contact.getPhone()) +
                 String.format(PIR_DETAIL_FOOTER);
+    }
+
+    public Contact getContact() {
+        return contact;
     }
 }

@@ -1,4 +1,4 @@
-package se.pim.view.OneLinerView;
+package se.pim.view.oneLinerView;
 
 import se.pim.model.impl.Note;
 import se.pim.view.IView;

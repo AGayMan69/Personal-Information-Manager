@@ -1,4 +1,4 @@
-package se.pim.view.SystemView;
+package se.pim.view.systemView;
 
 import se.pim.view.IView;
 

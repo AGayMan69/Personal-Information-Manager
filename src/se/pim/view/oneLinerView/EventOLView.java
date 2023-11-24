@@ -1,4 +1,4 @@
-package se.pim.view.OneLinerView;
+package se.pim.view.oneLinerView;
 
 import se.pim.model.impl.Event;
 import se.pim.view.IView;
@@ -12,6 +12,7 @@ public class EventOLView implements IView {
     public EventOLView(Event event) {
         this.event = event;
     }
+
     public void show() {
         System.out.print(viewToString());
     }

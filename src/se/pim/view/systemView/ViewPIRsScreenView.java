@@ -1,4 +1,4 @@
-package se.pim.view.SystemView;
+package se.pim.view.systemView;
 
 import se.pim.view.IView;
 
@@ -20,7 +20,7 @@ public class ViewPIRsScreenView implements IView {
 
     @Override
     public String viewToString() {
-        return String.format(          "╔════════════════════════════════════════════════════════════════════════════════════════════╗\n" +
+        return String.format("╔════════════════════════════════════════════════════════════════════════════════════════════╗\n" +
                 "║                                                                                            ║\n" +
                 "║                                      View PIRs                                             ║\n" +
                 "║                                                                                            ║\n" +

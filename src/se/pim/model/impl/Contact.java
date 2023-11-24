@@ -3,12 +3,11 @@ package se.pim.model.impl;
 import se.pim.model.IPIR;
 
 public class Contact implements IPIR {
+    public static final String TYPE = "Contact";
+    private final int id;
     private String name;
     private String address;
     private String phone;
-
-    private final int id;
-    public static final String TYPE = "Contact";
 
     public Contact(String name, String address, String phone, int id) {
         this.name = name;
@@ -70,20 +69,20 @@ public class Contact implements IPIR {
         return name;
     }
 
-    public String getAddress() {
-        return address;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
     public void setName(String name) {
         this.name = name;
     }
 
+    public String getAddress() {
+        return address;
+    }
+
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public String getPhone() {
+        return phone;
     }
 
     public void setPhone(String phone) {

@@ -9,9 +9,10 @@ import java.util.Map;
 
 public class ViewPIRCommand implements ICommand {
     private final Map<Integer, IPIR> pirs;
+    private final ICommandFactory commandFactory;
     private String search;
     private int page;
-    private final ICommandFactory commandFactory;
+
     public ViewPIRCommand(Map<Integer, IPIR> pirs) {
         this.pirs = pirs;
         this.search = "";
@@ -22,7 +23,7 @@ public class ViewPIRCommand implements ICommand {
     @Override
     public void run() {
         while (true) {
-            try{
+            try {
                 ICommand command = commandFactory.createCommand();
                 if (command == null) continue;
                 if (command instanceof ViewExitCommand) break;
@@ -33,14 +34,6 @@ public class ViewPIRCommand implements ICommand {
         }
     }
 
-    public void setSearch(String search) {
-        this.search = search;
-    }
-
-    public void setPage(int page) {
-        this.page = page;
-    }
-
     public Map<Integer, IPIR> getPirs() {
         return pirs;
     }
@@ -49,7 +42,15 @@ public class ViewPIRCommand implements ICommand {
         return search;
     }
 
+    public void setSearch(String search) {
+        this.search = search;
+    }
+
     public int getPage() {
         return page;
+    }
+
+    public void setPage(int page) {
+        this.page = page;
     }
 }

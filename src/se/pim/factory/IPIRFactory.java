@@ -8,8 +8,12 @@ import se.pim.model.impl.Task;
 
 public interface IPIRFactory {
     IPIR createPIR(int id);
+
     Contact createContact(int id);
+
     Event createEvent(int id);
+
     Note createNote(int id);
+
     Task createTask(int id);
 }

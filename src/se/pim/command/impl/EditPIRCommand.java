@@ -16,7 +16,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
 
-public class editPIRCommand implements ICommand {
+public class EditPIRCommand implements ICommand {
     private static final Map<Class<? extends IPIR>, Function<IPIR, ? extends IPIREditor>> editorMap;
 
     static {
@@ -26,9 +26,10 @@ public class editPIRCommand implements ICommand {
         editorMap.put(Note.class, pir -> new NoteEditor((Note) pir));
         editorMap.put(Task.class, pir -> new TaskEditor((Task) pir));
     }
+
     private final IPIR pir;
 
-    public editPIRCommand(IPIR pir) {
+    public EditPIRCommand(IPIR pir) {
         this.pir = pir;
     }
 

@@ -7,11 +7,11 @@ import se.pim.model.impl.Event;
 import se.pim.model.impl.Note;
 import se.pim.model.impl.Task;
 import se.pim.view.IView;
-import se.pim.view.OneLinerView.ContactOLView;
-import se.pim.view.OneLinerView.EventOLView;
-import se.pim.view.OneLinerView.NoteOLView;
-import se.pim.view.OneLinerView.TaskOLView;
-import se.pim.view.SystemView.ViewPIRsScreenView;
+import se.pim.view.oneLinerView.ContactOLView;
+import se.pim.view.oneLinerView.EventOLView;
+import se.pim.view.oneLinerView.NoteOLView;
+import se.pim.view.oneLinerView.TaskOLView;
+import se.pim.view.systemView.ViewPIRsScreenView;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -24,7 +24,8 @@ import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
-import static se.pim.Const.*;
+import static se.pim.Const.VIEW_RESULT_EMPTY;
+import static se.pim.Const.stringToLocalDateTime;
 
 public class ListPIRCommand implements ICommand {
 
@@ -44,7 +45,7 @@ public class ListPIRCommand implements ICommand {
     private final int size = 10;
     private int totalPages = 0;
 
-    private ViewPIRCommand viewPIRCommand;
+    private final ViewPIRCommand viewPIRCommand;
 
     public ListPIRCommand(Map<Integer, IPIR> pirs, String search, int page, ViewPIRCommand viewPIRCommand) {
         this.pirs = pirs;
@@ -59,8 +60,7 @@ public class ListPIRCommand implements ICommand {
         String pirListStr = generatePirListStr();
         if (totalPages == 0) {
             viewPIRCommand.setPage(1);
-        }
-        else if (totalPages < viewPIRCommand.getPage()) {
+        } else if (totalPages < viewPIRCommand.getPage()) {
             viewPIRCommand.setPage(totalPages);
         }
         String paginationList = generatePaginationList();
@@ -188,6 +188,9 @@ class QueryParser {
                     case "deadline":
                         orPredicate = orPredicate.or(ipir -> ipir instanceof Task && evaluateDateCondition(((Task) ipir).getDeadline(), operator, value));
                         break;
+                    case "type":
+                        orPredicate = orPredicate.or(ipir -> evaluateTypeCondition(ipir, operator, value));
+                        break;
                 }
             }
 
@@ -195,6 +198,24 @@ class QueryParser {
         }
 
         return predicate;
+    }
+
+    private static boolean evaluateTypeCondition(IPIR ipir, String operator, String expectedType) {
+        if (operator.equals("==")) {
+            switch (expectedType.toLowerCase()) {
+                case "contact":
+                    return ipir instanceof Contact;
+                case "event":
+                    return ipir instanceof Event;
+                case "note":
+                    return ipir instanceof Note;
+                case "task":
+                    return ipir instanceof Task;
+                default:
+                    return false;
+            }
+        }
+        return false;
     }
 
     private boolean evaluateStringCondition(String actualValue, String operator, String expectedValue) {

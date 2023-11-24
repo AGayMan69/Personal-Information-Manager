@@ -1,4 +1,4 @@
-package se.pim.view.DetailView;
+package se.pim.view.detailView;
 
 import se.pim.model.impl.Note;
 import se.pim.view.IView;
@@ -21,5 +21,9 @@ public class NoteDetailView implements IView {
         return String.format(PIR_DETAIL_HEADER, Note.TYPE, note.getId()) +
                 String.format(NOTE_DETAIL_CONTENT, note.getContent()) +
                 String.format(PIR_DETAIL_FOOTER);
+    }
+
+    public Note getNote() {
+        return note;
     }
 }

@@ -5,12 +5,11 @@ import se.pim.model.IPIR;
 import java.time.LocalDateTime;
 
 public class Event implements IPIR {
+    public static final String TYPE = "Event";
+    private final int id;
     private String description;
     private LocalDateTime startTime;
     private LocalDateTime alarm;
-
-    private final int id;
-    public static final String TYPE = "Event";
 
     public Event(String description, LocalDateTime startTime, LocalDateTime alarm, int id) {
         this.description = description;
@@ -67,20 +66,20 @@ public class Event implements IPIR {
         return description;
     }
 
-    public LocalDateTime getStartTime() {
-        return startTime;
-    }
-
-    public LocalDateTime getAlarm() {
-        return alarm;
-    }
-
     public void setDescription(String description) {
         this.description = description;
     }
 
+    public LocalDateTime getStartTime() {
+        return startTime;
+    }
+
     public void setStartTime(LocalDateTime startTime) {
         this.startTime = startTime;
+    }
+
+    public LocalDateTime getAlarm() {
+        return alarm;
     }
 
     public void setAlarm(LocalDateTime alarm) {

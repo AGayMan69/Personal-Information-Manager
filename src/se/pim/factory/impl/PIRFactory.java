@@ -6,11 +6,11 @@ import se.pim.model.impl.Contact;
 import se.pim.model.impl.Event;
 import se.pim.model.impl.Note;
 import se.pim.model.impl.Task;
-import se.pim.view.CreatePIRView.CreateContactView;
-import se.pim.view.CreatePIRView.CreateEventView;
-import se.pim.view.CreatePIRView.CreateNoteView;
-import se.pim.view.CreatePIRView.CreateTaskView;
-import se.pim.view.SystemView.CreatePIRScreenView;
+import se.pim.view.createPIRView.CreateContactView;
+import se.pim.view.createPIRView.CreateEventView;
+import se.pim.view.createPIRView.CreateNoteView;
+import se.pim.view.createPIRView.CreateTaskView;
+import se.pim.view.systemView.CreatePIRScreenView;
 
 import java.time.LocalDateTime;
 import java.util.Date;
@@ -18,6 +18,16 @@ import java.util.Date;
 import static se.pim.Const.*;
 
 public class PIRFactory implements IPIRFactory {
+    private static void displayCreateContact(String name, String address, String phone) {
+        ClearConsole();
+        new CreateContactView(name, address, phone).show();
+    }
+
+    private static void displayCreateTask(String description, Date deadline) {
+        ClearConsole();
+        new CreateTaskView(description, deadline).show();
+    }
+
     @Override
     public IPIR createPIR(int id) {
         ClearConsole();
@@ -57,11 +67,6 @@ public class PIRFactory implements IPIRFactory {
         System.out.print("** Contact Created: press 'enter' to continue **");
         scanner.nextLine();
         return new Contact(name, address, phone, id);
-    }
-
-    private static void displayCreateContact(String name, String address, String phone) {
-        ClearConsole();
-        new CreateContactView(name, address, phone).show();
     }
 
     @Override
@@ -120,10 +125,5 @@ public class PIRFactory implements IPIRFactory {
         System.out.print("** Task Created: press 'enter' to continue **");
         scanner.nextLine();
         return new Task(description, deadline, id);
-    }
-
-    private static void displayCreateTask(String description, Date deadline) {
-        ClearConsole();
-        new CreateTaskView(description, deadline).show();
     }
 }

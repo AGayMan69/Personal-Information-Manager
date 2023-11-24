@@ -1,4 +1,4 @@
-package se.pim.view.DetailView;
+package se.pim.view.detailView;
 
 import se.pim.model.impl.Event;
 import se.pim.view.IView;
@@ -11,6 +11,7 @@ public class EventDetailView implements IView {
     public EventDetailView(Event event) {
         this.event = event;
     }
+
     public void show() {
         System.out.print(viewToString());
     }
@@ -24,4 +25,7 @@ public class EventDetailView implements IView {
                 String.format(PIR_DETAIL_FOOTER);
     }
 
+    public Event getEvent() {
+        return event;
+    }
 }

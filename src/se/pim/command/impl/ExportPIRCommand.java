@@ -29,6 +29,8 @@ public class ExportPIRCommand implements ICommand {
         int result = exportPIR(fileName);
         if (result == -1) System.out.println("Export failed");
         else System.out.println("Exported " + result + " PIRs");
+        System.out.println("Press enter to continue...");
+        scanner.nextLine();
     }
 
     public int exportPIR(String fileName) {
